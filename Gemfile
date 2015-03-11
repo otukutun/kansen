@@ -55,6 +55,8 @@ gem 'versionist'
 gem 'kaminari'
 gem 'bootstrap-sass'
 gem 'simple_form'
+
+gem 'active_hash'
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-doc'
