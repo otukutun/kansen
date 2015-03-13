@@ -35,4 +35,12 @@ Rails.application.config.to_prepare do
 #      {id: 32, name: '', api_name: ''},
 #      {id: 33, name: '', api_name: ''},
   ]
+  League.data = [
+      {id: 1, name: 'J1リーグ', api_name: 'j1'},
+      {id: 2, name: 'J1 1stステージ', api_name: 'j1-1'},
+      {id: 3, name: 'J1 2stステージ', api_name: 'j1-2'},
+      {id: 4, name: 'J2リーグ', api_name: 'j2'},
+      {id: 5, name: 'J3リーグ', api_name: 'j3'},
+      {id: 6, name: 'ヤマザキナビスコカップ', api_name: 'ync'},
+  ]
 end
