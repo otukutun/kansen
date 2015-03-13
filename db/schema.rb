@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150313172256) do
+ActiveRecord::Schema.define(version: 20150313180328) do
 
   create_table "admin_admin_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20150313172256) do
     t.integer  "winner"
     t.integer  "loser"
     t.integer  "visitors"
-    t.integer  "league"
+    t.integer  "league_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "year"
