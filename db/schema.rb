@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150221165235) do
+ActiveRecord::Schema.define(version: 20150313165005) do
 
   create_table "admin_admin_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -30,6 +30,22 @@ ActiveRecord::Schema.define(version: 20150221165235) do
 
   add_index "admin_admin_users", ["email"], name: "index_admin_admin_users_on_email", unique: true
   add_index "admin_admin_users", ["reset_password_token"], name: "index_admin_admin_users_on_reset_password_token", unique: true
+
+  create_table "matches", force: :cascade do |t|
+    t.integer  "home_team_id"
+    t.integer  "away_team_id"
+    t.string   "place"
+    t.datetime "held_at"
+    t.integer  "flg"
+    t.integer  "home_score"
+    t.integer  "away_score"
+    t.integer  "winner"
+    t.integer  "loser"
+    t.integer  "visitors"
+    t.integer  "league"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
