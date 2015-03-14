@@ -55,6 +55,7 @@ gem 'versionist'
 gem 'kaminari'
 gem 'bootstrap-sass'
 gem 'simple_form'
+gem 'faraday', '~> 0.9.1'
 
 gem 'active_hash'
 group :development, :test do
