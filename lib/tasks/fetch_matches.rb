@@ -36,8 +36,27 @@ class Tasks::FetchMatches
       # 失敗時、log出力
     end
 
-    def result
-      puts 'hello world'
+    def result(league: 'j1', year: Time.zone.now.year)
+      logger = Logger.new('log/fetch_matches_result.log')
+      logger.debug 'start fetching match result'
+      begin
+        conn = connect_http
+        response = conn.get do |req|
+          req.url PATH, {year: year, league: league}
+        end
+        if response.status == 200
+          json = JSON.parse(response.body)
+          json['sec'].each do |sec|
+            sec['sec'] ||= 'ゼロックス杯'
+            sec['match'].each do |m|
+              save_result(m, year: json['year'], section: sec['sec'], league: json['league']) if Match.home(m['home']).away(m['away']).own_league(json['league']).where(year: json['year']).present?
+              logger.info 'fetching success'
+            end
+          end
+        end
+      rescue
+        logger.warn 'fetching failed'
+      end
     end
 
     private
@@ -60,6 +79,17 @@ class Tasks::FetchMatches
       m.year = year
       m.place = match['place'] ||= ''
       m.section = section
+      m.save
+    end
+
+    def save_result(match, year: Time.zone.now.year, section: '', league: 'j1-1')
+      return unless match['score'].present?
+      m = Match.home(match['home']).away(match['away']).own_league(league).where(year: year, section: section).first
+      home_score, away_score = match['score'].split(/-/) if match['score'].present?
+      m.home_score = home_score
+      m.away_score = away_score
+      m.visitors = match['note'].gsub(/,/, '').to_i
+      m.flg = 'end'
       m.save
     end
   end
