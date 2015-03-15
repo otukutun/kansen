@@ -1,7 +1,7 @@
 class Match < ActiveRecord::Base
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :home_team, class_name: 'Team'
-  belongs_to_active_hash :away_team, class_name: 'Team'
+  belongs_to_active_hash :home_team, class_name: 'Team', shortcuts: %i(name api_name)
+  belongs_to_active_hash :away_team, class_name: 'Team', shortcuts: %i(name api_name)
   belongs_to_active_hash :league
 
   validates :home_team_id, presence: true
