@@ -20,4 +20,9 @@ class Match < ActiveRecord::Base
     away_team = Team.find_by_api_name(away_team_api_name)
     where('away_team_id = ?', away_team.id)
   }
+
+  scope :own_league, -> (league_api_name) {
+    league = League.find_by_api_name(league_api_name)
+    where('league_id = ?', league.id)
+  }
 end
