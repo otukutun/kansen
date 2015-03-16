@@ -1,10 +1,12 @@
 class Match < ActiveRecord::Base
+  by_star_field :held_at
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :home_team, class_name: 'Team', shortcuts: %i(name api_name)
   belongs_to_active_hash :away_team, class_name: 'Team', shortcuts: %i(name api_name)
   belongs_to_active_hash :league
 
   enum flg: %i(plan end)
+
 
   validates :home_team_id, presence: true
   validates :away_team_id, presence: true

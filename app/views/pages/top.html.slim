@@ -1,2 +1,7 @@
-h1 Pages#top
+h1 最近の試合
 p Find me in app/views/pages/top.html.slim
+- @matches.each do |match|
+  = match.home_team_name
+  | vs
+  = match.away_team_name
+  br
