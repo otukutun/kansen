@@ -58,6 +58,7 @@ gem 'simple_form'
 gem 'faraday', '~> 0.9.1'
 
 gem 'active_hash'
+gem 'by_star'
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-doc'
