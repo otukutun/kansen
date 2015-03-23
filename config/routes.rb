@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get 'users/my'
   get 'users/index'
+  resources :matches, only: :show
 
   devise_for :users, controllers: {
                        omniauth_callbacks: 'users/omniauth_callbacks',
